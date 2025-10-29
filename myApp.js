@@ -1,11 +1,9 @@
 const express = require('express');
-const app = express();
+const router = express.Router();
 
-app.get('/api/:date?', function(req, res) {
+router.get('/api/:date?', function(req, res) {
     
     let date = req.params.date;
-
-    console.log(`1 -- ${date}`);
 
     if (date === undefined) {
         date = new Date();
@@ -14,8 +12,6 @@ app.get('/api/:date?', function(req, res) {
     } else {
         date = new Date(Number(req.params.date))
     };
-
-    console.log(`2 -- ${date}`);
 
     if (date == 'Invalid Date') {
         res.json(
@@ -37,4 +33,4 @@ app.get('/api/:date?', function(req, res) {
     }
 });
 
-module.exports = app;
+module.exports = router;
